@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="384.0" prefWidth="1126.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="version2.BinaryTreeController">
+   <children>
+      <AnchorPane layoutX="-109.0" layoutY="-222.0" prefHeight="200.0" prefWidth="200.0" />
+      <Pane fx:id="p" layoutX="-2.0" prefHeight="288.0" prefWidth="493.0" />
+      <Pane  layoutX="252.0" layoutY="258.0" prefHeight="105.0" prefWidth="493.0">
+         <children>
+            <Label layoutX="167.0" layoutY="21.0" text="Enter a key:" />
+            <TextField fx:id="Key" layoutX="233.0" layoutY="16.0" prefHeight="25.0" prefWidth="58.0" />
+            <Button fx:id="Search" layoutX="282.0" layoutY="16.0" mnemonicParsing="false"  prefHeight="25.0" prefWidth="58.0" text="Search" onAction="#Search"/>
+            <Button fx:id="Insert" layoutX="340.0" layoutY="17.0" mnemonicParsing="false" text="Insert" onAction="#Insert" />
+            <Button fx:id="Remove" layoutX="388.0" layoutY="17.0" mnemonicParsing="false" text="Remove" onAction="#Remove"/>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
