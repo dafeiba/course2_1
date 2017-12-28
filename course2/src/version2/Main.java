@@ -1,4 +1,4 @@
-package version1;
+package version2;
 	
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,11 +14,11 @@ public class Main extends Application {
 		  try {
 	            // Read file fxml and draw interface.
 	            Parent root = FXMLLoader.load(getClass()
-	                    .getResource("version1Gui.fxml"));
+	                    .getResource("version2Gui.fxml"));
 
-	            primaryStage.setTitle("version1Gui");
+	            primaryStage.setTitle("My version2");
 	            primaryStage.setScene(new Scene(root));
-	            primaryStage.show();
+	            primaryStage.show(); 
 
 	        } catch(Exception e) {
 	            e.printStackTrace();

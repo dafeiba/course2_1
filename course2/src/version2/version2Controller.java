@@ -1,4 +1,4 @@
-package version1;
+package version2;
 
 import java.net.URL;
 
@@ -22,18 +22,31 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import version1.InfixInToSuffix;
+
 /*10*(8-6)+4*/
-public class version1Controller implements Initializable {
+public class version2Controller implements Initializable {
 	 ArrayList<Integer> list = new ArrayList<Integer>();
 	 InfixInToSuffix infixInToSuffix = new InfixInToSuffix();
 	 Alert alert = new Alert(AlertType.INFORMATION);
+	 Experssion exp = new Experssion();
+		Thinker ti = new Thinker(exp);
+		ArrayList<Integer> card = new ArrayList<Integer>();
+		int sum = 24;
 	 
-	@FXML
-	private HBox hb;
+   @FXML
+   private HBox hb;
    @FXML
    private Button myButton;
    @FXML
    private TextField tf;
+   @FXML
+   private TextField tf2;
+   @FXML
+   private TextField tf3;
+   @FXML
+   private TextField tf4;
+   @FXML
+   private TextField tf5;
 
    @Override
    public void initialize(URL location, ResourceBundle resources) {
@@ -51,7 +64,6 @@ public class version1Controller implements Initializable {
 	    hb.getChildren().add(new ImageView("file:card/" + list.get(2) + ".png"));
 	    hb.getChildren().add(new ImageView("file:card/" + list.get(3) + ".png"));
 	    hb.setAlignment(Pos.CENTER);
-	   
 
    }
    
@@ -63,12 +75,13 @@ public void btn1(ActionEvent e){
 	    hb.getChildren().add(new ImageView("file:card/" + list.get(1) + ".png"));
 	    hb.getChildren().add(new ImageView("file:card/" + list.get(2) + ".png"));
 	    hb.getChildren().add(new ImageView("file:card/" + list.get(3) + ".png"));
-	  
+	    hb.setAlignment(Pos.CENTER);
 }
 
 
 @FXML
 public void btn2(ActionEvent e) {
+	
 	String text = tf.getText();
 	  String a = infixInToSuffix.toSuffix(text);//传入 一串 算数公式  
 	         
@@ -80,9 +93,38 @@ public void btn2(ActionEvent e) {
 	        	  alert.setContentText("incorrectNumbers");
 	        	  
 	           alert.show();
-	           	           	        	
+	           	
 }
-
+@FXML 
+public void btn3(ActionEvent e) {
+	String text1  = tf2.getText();
+	String text2  = tf3.getText();
+	String text3  = tf4.getText();
+	String text4  = tf5.getText();
+	
+	card.add(Integer.parseInt(text1));
+	System.out.println(Integer.parseInt(text1));
+	card.add(Integer.parseInt(text2));
+	System.out.println(Integer.parseInt(text2));
+	card.add(Integer.parseInt(text3));
+	System.out.println(Integer.parseInt(text3));
+	card.add(Integer.parseInt(text4));
+	System.out.println(Integer.parseInt(text4));
+	ti.count(card, card.size() - 1, sum);
+	
+	
+	System.out.println(ti.s.toString());
+	if(ti.s.toString().equals(" ")) {
+		alert.setContentText("no solution");
+	}
+	else
+		alert.setContentText(ti.s.toString());
+	
+	alert.show();
+	
+	
+	
+}
 
 
 }
