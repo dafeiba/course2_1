@@ -114,7 +114,7 @@ public void btn3(ActionEvent e) {
 	
 	
 	System.out.println(ti.s.toString());
-	if(ti.s.toString().equals(" ")) {
+	if(ti.s.toString().equals(" ")||ti.s.toString().equals(null)||ti.s.toString().hashCode() == 0) {
 		alert.setContentText("no solution");
 	}
 	else

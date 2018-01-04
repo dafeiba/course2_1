@@ -20,7 +20,14 @@ public class Sum24 {
 		}
 		
 		ti.count(card, card.size() - 1, sum);
-		System.out.println(ti.s.toString());
+		
+		if(ti.s.toString().equals(" ")||ti.s.toString().equals(null)||ti.s.toString().hashCode() == 0) {
+		System.out.println("no solution");
+		}
+		else {
+			System.out.println(ti.s.toString());
+			}
+		
 
 	}
 
