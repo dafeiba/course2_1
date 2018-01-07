@@ -20,7 +20,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 
+
 public class MazeController implements Initializable{
+	
 	int maze[][];
     private int row = 9;
     private int col = 8;
@@ -28,9 +30,9 @@ public class MazeController implements Initializable{
     boolean p[][] = null;
 	
 	 String resault[][]=new String[3][3];
-GridPane gp = new  GridPane();
+
 	
-	TextField tf = new TextField("111");
+	
 
 @FXML
 private AnchorPane ap;
@@ -43,51 +45,33 @@ public MazeController(){
 
 
     
-
+public void init(){
+	
+	
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("请输入迷宫的行数");
+    row = scanner.nextInt();
+    System.out.println("请输入迷宫的列数");
+    col = scanner.nextInt();
+    System.out.println("请输入" + row + "行" + col + "列的迷宫");
+    int temp = 0;
+    for(int i = 0; i < row; ++i) {
+        for(int j = 0; j < col; ++j) {
+            temp = scanner.nextInt();
+            maze[i][j] = temp;
+            p[i][j] = false;
+        }
+    }
+}
 
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		GridPane  gp = new  GridPane();
+		TextField tf = new TextField();
 		
-		Scanner scanner = new Scanner(System.in);
-	    System.out.println("请输入迷宫的行数");
-	    row = scanner.nextInt();
-	    System.out.println("请输入迷宫的列数");
-	    col = scanner.nextInt();
-	    System.out.println("请输入" + row + "行" + col + "列的迷宫");
-	    int temp = 0;
-	    for(int i = 0; i < row; ++i) {
-	        for(int j = 0; j < col; ++j) {
-	            temp = scanner.nextInt();
-	            maze[i][j] = temp;
-	            p[i][j] = false;
-	        }
-	    }
-		
-		MazeController demo = new MazeController();
-	     
-	        demo.findPath();
-	        
-	        
-	        for(int k=0;k<maze.length;k++){
-	            for(int t=0;t<maze[0].length;t++){
-	                    // tf.setText(resault[k][t]);
-	                //   System.out.println(resault[);
-	                   //gp.add(tf, t, k);
-	            }
-	          
-	        }
-	        ap.getChildren().add(gp);
-	
-	
-
-	
-	
-
-}
-	 public void findPath(){
-	        // 给原始迷宫的周围家一圈围墙
-	        int temp[][] = new int[row + 2][col + 2];
+		 init();
+		 int temp[][] = new int[row + 2][col + 2];
 	        for(int i = 0; i < row + 2; ++i) {
 	            for(int j = 0; j < col + 2; ++j) {
 	                temp[0][j] = 1;
@@ -152,8 +136,10 @@ public MazeController(){
 	        /*
 	         * 图形化输出路径
 	         * */
-	         
-	      
+//	         
+	        String resault[][]=new String[row+1][col+1];
+	        System.out.println("row:"+row);
+	        System.out.println("col:"+col);
 	        for(int k=0;k<row;++k){
 	            for(int t=0;t<col;++t){
 	                resault[k][t]=(maze[k][t])+"";
@@ -165,10 +151,26 @@ public MazeController(){
 	         
 	        }
 	         
-	        
-	     
+	        for(int k=0;k<row;++k){
+	            for(int t=0;t<col;++t){
+	            	TextField tf1 = new TextField();
+	            	
+	            	tf1.setText(resault[k][t]);
+	            	   System.out.print("sb:");
+	            	   gp.add(tf1, t, k);
+	                System.out.print(resault[k][t]+"\t");
+	            }
+	            System.out.println();
+	          
+	        }
+	        ap.getChildren().add(gp);
 	 
 	    }
 	 
+	 
+	    }
 	
-}
+	 
+	
+
+

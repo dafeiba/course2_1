@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,8 +19,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
-import version1.Huffman;
 import version1.Huffman.Tree;
+
 import java.io.*;
 
 /*Mississippi,helloworld*/
@@ -49,8 +50,8 @@ public class HuffmanController implements Initializable {
 	public void showHuffmanTree(ActionEvent e) throws IOException {
 		
 		
-		java.io.File file = new java.io.File("src/version1/codeFile.txt");
-		File file1 = new File("src/version1/hfmtree.txt");
+		java.io.File file = new java.io.File("src/application/codeFile.txt");
+		File file1 = new File("src/application/hfmtree.txt");
 			
 		
 		
