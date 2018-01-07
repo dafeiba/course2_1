@@ -7,22 +7,22 @@ import java.util.*;
 
 
 public class Maze implements Serializable{
-    private int rows = 10;//杩峰鐨勮鏁�
-    private int columns = 10;//杩峰鐨勫垪鏁�
-    private byte[][] mazeData;//瀛樺偍杩峰鐨勬暟鎹�0琛ㄧず閫氳矾锛�1琛ㄧず闃荤
-    private int startPoint = 0;//杩峰璧风偣
-    private int endPoint = rows * columns - 1;//杩峰缁堢偣
+    private int rows = 10;//迷宫的行数
+    private int columns = 10;//迷宫的列数
+    private byte[][] mazeData;//存储迷宫的数据0表示通路，1表示阻碍
+    private int startPoint = 0;//迷宫起点
+    private int endPoint = rows * columns - 1;//迷宫终点
     private Position[][] labyrinth = new Position[rows][columns];
 
-    public static final double PASS_PROBABILITY = 0.6;//鎺у埗閫氳繃鍑虹幇鐨勬鐜�
-    public static final byte[] STATE = {0, 1};//鐐圭殑鐘舵�� 0琛ㄧず閫氳繃 1琛ㄧず闃荤
+    public static final double PASS_PROBABILITY = 0.6;//控制通过出现的概率
+    public static final byte[] STATE = {0, 1};//点的状态 0表示通过 1表示阻碍
 
-    private ArrayList<ArrayList<String>> route = new ArrayList<>();
+     ArrayList<ArrayList<String>> route = new ArrayList<>();
     private ArrayList<String> temp = new ArrayList<String>();
     private boolean findWay;
 
     /**
-     * 閫氳繃琛屽拰鍒楁潵鏋勯�犺糠瀹�
+     * 通过行和列来构造迷宫
      * @param rows
      * @param columns
      */
@@ -96,20 +96,20 @@ public class Maze implements Serializable{
     }
 
     /**
-     * 闅忔満鐢熸垚杩峰
+     * 随机生成迷宫
      */
     public void initialMazeData(){
         mazeData = new byte[rows][columns];
         labyrinth = new Position[rows][columns];
-        endPoint = rows * columns - 1;//璁剧疆榛樿缁堢偣
+        endPoint = rows * columns - 1;//设置默认终点
 
-        //闅忔満璁剧疆杩峰
+        //随机设置迷宫
         for (int i = 0; i < mazeData.length; i++) {
             for (int j = 0; j < mazeData[i].length; j++) {
 
 
 
-                if(Math.random() > PASS_PROBABILITY){//鎺у埗閫氳繃鍑虹幇鐨勬鐜�
+                if(Math.random() > PASS_PROBABILITY){//控制通过出现的概率
                     mazeData[i][j] = STATE[1];
                     labyrinth[i][j] = new Position(i, j, 1);
                 }
@@ -120,12 +120,12 @@ public class Maze implements Serializable{
             }
         }
 
-        //灏嗚捣鐐瑰拰缁堢偣璁句负閫氳繃
+        //将起点和终点设为通过
         mazeData[startPoint/this.columns][startPoint%this.columns] = STATE[0];
         mazeData[endPoint/this.columns][endPoint%this.columns] = STATE[0];
     }
 
-    //鎵惧埌杩峰鍑哄彛璺嚎
+    //找到迷宫出口路线
     public boolean findPath(){
         findWay = false;
         byte[][] temp = mazeDataCopy();
@@ -146,15 +146,15 @@ public class Maze implements Serializable{
 
 
     /**
-     * 浣跨敤閫掑綊鎵惧埌鍑哄彛
+     * 使用递归找到出口
      * @param mazeData
      * @param x
      * @param y
-     * @return 鏄惁鏈夊嚭鍙�
+     * @return 是否有出口
      */
     public boolean findPath(byte mazeData[][], int x, int y) {
 
-        //鍒拌揪鍑哄彛鏃�
+        //到达出口时
         if (x == endPoint/this.columns && y == endPoint%this.columns) {
             findWay = true;
 
@@ -165,28 +165,28 @@ public class Maze implements Serializable{
             return false;
         }
 
-        //鍚戝彸鎼滃
+        //向右搜寻
         if (x + 1 < mazeData.length && y < mazeData[x + 1].length && (mazeData[x + 1][y] == STATE[0])) {
             mazeData[x + 1][y] = STATE[1];
             //route.add(new Position(x, y, Position.DOWN));
             findPath(mazeData, x + 1, y);
         }
 
-        //鍚戜笅鎼滃
+        //向下搜寻
         if (y + 1 < mazeData[x].length && x < mazeData.length && (mazeData[x][y + 1] == STATE[0])) {
             mazeData[x][y + 1] = STATE[1];
             //route.add(new Position(x, y, Position.RIGHT));
             findPath(mazeData, x, y + 1);
         }
 
-        //鍚戝乏鎼滃
+        //向左搜寻
         if (x - 1 < mazeData.length && x - 1 > 0 && y < mazeData[x - 1].length && (mazeData[x - 1][y] == STATE[0])) {
             mazeData[x - 1][y] = STATE[1];
             //route.add(new Position(x, y, Position.UP));
             findPath(mazeData, x - 1, y);
         }
 
-        //鍚戜笂鎼滃
+        //向上搜寻
         if (y - 1 > 0 && y - 1 < mazeData[x].length && x < mazeData.length && (mazeData[x][y - 1] == STATE[0])) {
             mazeData[x][y - 1] = STATE[1];
            // route.add(new Position(x, y, Position.LEFT));
@@ -194,9 +194,9 @@ public class Maze implements Serializable{
         }
 
 
-        //娌℃湁鎵惧埌鍑哄彛
+        //没有找到出口
         if (x == 0 && y == 0 && !findWay) {
-            //System.out.println("娌℃湁鍑哄彛");
+            //System.out.println("没有出口");
             //route.clear();
             return false;
         }
@@ -205,7 +205,7 @@ public class Maze implements Serializable{
     }
 
     /**
-     * 鎵惧埌鎵�鏈夎矾寰�
+     * 找到所有路径
      */
     public void findAllWays(){
         findAllWays(labyrinth, startPoint/columns, startPoint%columns);
@@ -213,7 +213,7 @@ public class Maze implements Serializable{
 
 
     /**
-     * 鎵惧埌鎵�鏈夎矾寰�
+     * 找到所有路径
      * @param labyrinth
      * @param x
      * @param y

@@ -4,16 +4,16 @@ package main;
 
 
 public class Position {
-    private int x;//浣嶇疆鐨剎鍧愭爣
-    private int y;//浣嶇疆鐨剏鍧愭爣
+    private int x;//位置的x坐标
+    private int y;//位置的y坐标
     private int attribute;
     private String direction;
 
-    public static final String UP = "up";//涓� 寰�涓婄旱鍧愭爣y鍑�1
-    public static final String DOWN = "down";//涓� 寰�涓嬬旱鍧愭爣鍔�1
-    public static final String LEFT = "left";//宸� 寰�宸︽í鍧愭爣x鍑�1
-    public static final String RIGHT = "right";//鍙� 寰�鍙虫í鍧愭爣x鍔�1
-    public static final String END = "end";//鍙� 寰�鍙虫í鍧愭爣x鍔�1
+    public static final String UP = "up";//上 往上纵坐标y减1
+    public static final String DOWN = "down";//下 往下纵坐标加1
+    public static final String LEFT = "left";//左 往左横坐标x减1
+    public static final String RIGHT = "right";//右 往右横坐标x加1
+    public static final String END = "end";//右 往右横坐标x加1
 
     public Position(int x, int y, String direction) {
         this.x = x;
