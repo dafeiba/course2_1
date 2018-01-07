@@ -1,5 +1,3 @@
-/application/
-/MazeCell.class
-/Maze$MazeNode.class
-/Maze$Position.class
-/Maze.class
+/main/
+/test/
+/controller/

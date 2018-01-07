@@ -19,5 +19,5 @@ public class TestSixteenTail {
 		    for (int i = 0; i < path.size(); i++)
 		    	SixteenTailModel.printNode(
 		    			SixteenTailModel.getNode(path.get(i).intValue()));    
-		  }
+		  }  
 }
