@@ -8,8 +8,11 @@ import java.util.Stack;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.*;
@@ -30,12 +33,15 @@ public class MazeController implements Initializable{
     boolean p[][] = null;
 	
 	 String resault[][]=new String[3][3];
+	 Alert alert = new Alert(AlertType.INFORMATION);
 
 	
 	
 
 @FXML
 private AnchorPane ap;
+@FXML
+private Text t;
 
 public MazeController(){
     maze = new int[15][15];
@@ -119,13 +125,20 @@ public void init(){
 	            }
 	 
 	        }
+	    
 	 
 	        Stack<Position> newPos = new Stack<Position>();
 	        if (stack.empty()) {
 	            System.out.println("没有路径");
+	            alert.setContentText("没有路径");
+	            alert.show();
 	        } else {
+	        	
 	            System.out.println("有路径");
+	            alert.setContentText("有路径");
+	            alert.show();
 	            System.out.println("路径如下：");
+	            t.setText("路径如下：");
 	            while (!stack.empty()) {
 	                Position pos = new Position();
 	                pos = stack.pop();
@@ -135,6 +148,15 @@ public void init(){
 	         
 	        /*
 	         * 图形化输出路径
+0	0	1	0	0	0	1	0
+1	1	1	0	0	0	1	0
+0	0	1	0	1	1	0	1
+0	1	1	1	0	0	1	0
+0	0	0	1	0	0	0	0
+0	1	0	0	0	1	0	1
+0	1	1	1	1	0	0	1
+1	1	0	0	0	1	0	1
+1	1	0	0	0	0	0	0
 	         * */
 //	         
 	        String resault[][]=new String[row+1][col+1];
@@ -156,14 +178,17 @@ public void init(){
 	            	TextField tf1 = new TextField();
 	            	
 	            	tf1.setText(resault[k][t]);
-	            	   System.out.print("sb:");
+	            	
 	            	   gp.add(tf1, t, k);
-	                System.out.print(resault[k][t]+"\t");
+	            	   tf1.setPrefColumnCount(1);// 长和宽相等
+						tf1.setAlignment(Pos.CENTER);// 字居中
+	                
 	            }
-	            System.out.println();
+	           
 	          
 	        }
 	        ap.getChildren().add(gp);
+	      
 	 
 	    }
 	 
