@@ -4,7 +4,7 @@ import java.util.Map;
 
 /** 
  * 对字符串编码后的结果：包括编码后的字符串和字符/编码对 
- * @author yuncong 
+ 
  * 
  */  
 public class EncodeResult {  

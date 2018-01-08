@@ -2,17 +2,17 @@ package version1;
 public class Heap<E extends Comparable> {
   private java.util.ArrayList<E> list = new java.util.ArrayList<E>();
 
-  /** Create a default heap */
+  /** 创建堆 */
   public Heap() {
   }
 
-  /** Create a heap from an array of objects */
+  /** 从一个object数组创建堆 */
   public Heap(E[] objects) {
     for (int i = 0; i < objects.length; i++)
       add(objects[i]);
   }
 
-  /** Add a new object into the heap */
+  /** 向堆中添加object */
   public void add(E newObject) {
     list.add(newObject); // Append to the heap
     int currentIndex = list.size() - 1; // The index of the last node
@@ -33,7 +33,7 @@ public class Heap<E extends Comparable> {
     }
   }
 
-  /** Remove the root from the heap */
+  /** 从堆中删除根节点 */
   public E remove() {
     if (list.size() == 0) return null;
 
@@ -46,7 +46,7 @@ public class Heap<E extends Comparable> {
       int leftChildIndex = 2 * currentIndex + 1;
       int rightChildIndex = 2 * currentIndex + 2;
 
-      // Find the maximum between two children
+      // 在两个孩子中找到最大
       if (leftChildIndex >= list.size()) break; // The tree is a heap
       int maxIndex = leftChildIndex;
       if (rightChildIndex < list.size()) {
@@ -56,7 +56,7 @@ public class Heap<E extends Comparable> {
         }
       }
 
-      // Swap if the current node is less than the maximum
+      // 如果当前节点小于最大值，则进行交换。
       if (list.get(currentIndex).compareTo(
           list.get(maxIndex)) < 0) {
         E temp = list.get(maxIndex);
@@ -71,7 +71,7 @@ public class Heap<E extends Comparable> {
     return removedObject;
   }
 
-  /** Get the number of nodes in the tree */
+  /** 获取树中节点的个数 */
   public int getSize() {
     return list.size();
   }

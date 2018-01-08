@@ -7,18 +7,18 @@ public class SixteenTailModel{
 
   /** Construct a model */
   public SixteenTailModel() {
-    // Create edges
+    // 创建边
     List<AbstractGraph.Edge> edges = getEdges();
     
-    // Create a graph
+    // 创建图
     UnweightedGraph<Integer> graph = new UnweightedGraph<Integer>(
       edges, NUMBER_OF_NODES); 
 
-    // Obtain a BSF tree rooted at the target node
+    // 获得一个扎根在目标节点BSF树
     tree = graph.bfs(65535);
   }
 
-  /** Create all edges for the graph */
+  /** 创建图的所有边*/
   private List<AbstractGraph.Edge> getEdges() {
     List<AbstractGraph.Edge> edges =
       new ArrayList<AbstractGraph.Edge>(); // Store edges
@@ -28,7 +28,7 @@ public class SixteenTailModel{
         char[] node = getNode(u); // Get the node for vertex u
         if (node[k] == 'H') {
           int v = getFlippedNode(node, k);
-          // Add edge (v, u) for a legal move from node u to node v
+          // 为从节点U到节点v的合法移动添加边缘（V，U）
           edges.add(new AbstractGraph.Edge(v, u));
         }
       }
@@ -52,7 +52,7 @@ public class SixteenTailModel{
 
   public static void flipACell(char[] node, int row, int column) {
     if (row >= 0 && row <= 3 && column >= 0 && column <= 3) { 
-      // Within the boundary
+      //在边界
       if (node[row * 4 + column] == 'H')
         node[row * 4 + column] = 'T'; // Flip from H to T
       else

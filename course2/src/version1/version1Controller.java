@@ -54,7 +54,10 @@ public class version1Controller implements Initializable {
 	   
 
    }
-   
+   /**
+    * 
+    * 点击按钮btn1触发洗牌事件
+    */
 @FXML 
 public void btn1(ActionEvent e){
 	hb.getChildren().clear();
@@ -66,7 +69,10 @@ public void btn1(ActionEvent e){
 	  
 }
 
-
+/**
+ * 点击按钮btn2触发洗牌事件计算表达式
+ * 
+ */
 @FXML
 public void btn2(ActionEvent e) {
 	String text = tf.getText();

@@ -49,22 +49,7 @@ public class version2Gui extends Application {
 			tf1.setText("");
 
 		});
-			/*int count = 0;
-
-			for (int i = 0; i < 4; i++) {
-				for (int j = 0; j < 4; j++) {
-
-					TextField tf = new TextField(initialNode[count] + "");
-					tf.setPrefColumnCount(1);// 长和宽相等
-					tf.setAlignment(Pos.CENTER);// 字居中
-					gridPane.add(tf, j, i);// 为gridPane设置内容
-					count++;
-					tf.setFont(new Font("",12));
-
-				}
-			}
 			
-			*/
 			
 		
 			
@@ -103,10 +88,7 @@ public class version2Gui extends Application {
 			root.setLeft(gp);
 
 			Scene scene = new Scene(root, 800, 400);
-			/*
-			 * scene.getStylesheets().add(getClass().getResource("application.css").
-			 * toExternalForm());
-			 */
+			
 			primaryStage.setScene(scene);
 
 			primaryStage.show();

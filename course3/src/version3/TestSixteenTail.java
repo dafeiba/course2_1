@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class TestSixteenTail {
 
 	  public static void main(String[] args) {
-		    // Prompt the user to enter nine coins H and T's
+		    // 提示用户输入九个硬币H和T的
 		    System.out.print("Enter an initial nine coin H's and T's: ");
 		    Scanner input = new Scanner(System.in);
 		    String s = input.nextLine(); 

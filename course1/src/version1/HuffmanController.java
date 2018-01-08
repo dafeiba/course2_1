@@ -46,17 +46,11 @@ public class HuffmanController implements Initializable {
 		// TODO Auto-generated method stub
 
 	}
-
+//
 	public void showHuffmanTree(ActionEvent e) throws IOException {
 		
 		
-		java.io.File file = new java.io.File("src/application/codeFile.txt");
-		File file1 = new File("src/application/hfmtree.txt");
-			
-		
-		
-		PrintWriter  output = new PrintWriter(file);
-		PrintWriter output1 = new PrintWriter(file1);
+
 		p.getChildren().clear();
 		String text = textField1.getText();
 
@@ -69,14 +63,7 @@ public class HuffmanController implements Initializable {
 
 		char[] ch = text.toCharArray();
 		int[] as = new int[ch.length];
-		/*String[] codes2 = new String[ch.length];*/
 		
-	/*	for(int i = 0; i < codes2.length; i++) {
-			System.out.println(codes2[i]);
-			output.print(codes2[i]);
-			
-			
-		}*/
 	
 		for (int i = 0; i < ch.length; i++) {
 			as[i] = ch[i];
@@ -85,13 +72,6 @@ public class HuffmanController implements Initializable {
 		
 		
 
-		for (int i = 0; i < ch.length; i++) {
-
-			sb.append(codes[as[i]]);
-			output.println(codes[as[i]]);
-		
-		}
-		output.close();
 
 		alert.setContentText(text + " is encoded to " + sb);
 		alert.setTitle("Encode Text to Bits");
@@ -102,11 +82,14 @@ public class HuffmanController implements Initializable {
 
 	}
 	
-	
+	/**
+	 * 
+	 * 译码
+	 * 
+	 */
 	@FXML
 	public void Decode(ActionEvent e) throws Exception {
-	/*	File file = new File("src/version1/codeFile.txt");
-		Scanner input = new Scanner(file);*/
+	
 		 String temp = "";
 		 temp = tf2.getText();
 		  temp = hm.decode(new EncodeResult(temp, hm.getCodesWithKey()));
@@ -125,7 +108,7 @@ public class HuffmanController implements Initializable {
 	}
 
 	private void displayTree(Tree.Node root, int x, int y, int hGap) {
-		// Display the root
+		// 	显示根
 		String text = textField1.getText();
 		int vGap = 50;
 		int radius = 15;
@@ -141,30 +124,33 @@ public class HuffmanController implements Initializable {
 
 		if (root.left != null) {
 
-			// Draw a line to the left node
-			// Pane pane = new Pane();
+			// 向左节点画一条直线
+		
 			ConnectLeftChild(p, x - hGap, y + vGap, x, y);
 			textL = textL / 2;
-			// Draw the left subtree recursively
-			/* p.getChildren().add(new Text(x - hGap, y + vGap, textL+"")); */
+			// 递归地绘制左子树
+			
 
 			displayTree(root.left, x - hGap, y + vGap, hGap / 2);
 
 		}
 
 		if (root.right != null) {
-			// Draw a line to the right node
-			// Pane pane1 = new Pane();
+			// 向右节点画一条直线
+		
 			ConnectRightChild(p, x + hGap, y + vGap, x, y);
 			textL = textL - textL / 2;
 
-			// Draw the right subtree recursively
+			// 递归地绘制正确的子树
 			displayTree(root.right, x + hGap, y + vGap, hGap / 2);
-			/* p.getChildren().add(new Text(x + hGap, y + vGap, root.weight+"")); */
+		
 
 		}
 	}
 
+/*连接坐标为（x2,y2）的父节点和
+ * 坐标为（x1,y1）的左子节点
+*/
 	public void ConnectLeftChild(Pane pane, int x1, int y1, int x2, int y2) {
 		int radius = 15;
 		int vGap = 50;
@@ -176,7 +162,9 @@ public class HuffmanController implements Initializable {
 		pane.getChildren().add(new Line(x11, y11, x21, y21));
 		pane.getChildren().add(new Text((x11 + x21) / 2 - 2, (y11 + y21) / 2 - 2, "0"));
 	}
-
+	/*连接坐标为（x2,y2）的父节点和
+	 * 坐标为（x1,y1）的右子节点
+	*/
 	public void ConnectRightChild(Pane pane, int x1, int y1, int x2, int y2) {
 		int radius = 15;
 		int vGap = 50;

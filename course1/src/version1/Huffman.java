@@ -6,28 +6,7 @@ import java.util.Set;
 
 public class Huffman {
 	private Map<Character, String> codesWithKey = new HashMap<>();//按照哈夫曼编码的长度依次保存编码及对应字符
-  /*public static void main(String[] args) {
-    Scanner input = new Scanner(System.in);
-    System.out.print("Enter a text: ");
-    String text = input.nextLine();
-    
-
-    int[] counts = getCharacterFrequency(text); // Count frequency
-
-    System.out.printf("%-15s%-15s%-15s%-15s\n",
-      "ASCII Code", "Character", "Frequency", "Code");  
-    
-    Tree tree = getHuffmanTree(counts); // Create a Huffman tree
-    for(int i = 0; i < counts.length; i++) {
-    	if(counts[i]!=0)
-    System.out.println(counts[i]);}
-    String[] codes = getCode(tree.root); // Get codes
-        
-    for (int i = 0; i < codes.length; i++)
-      if (counts[i] != 0) // (char)i is not in text if counts[i] is 0
-        System.out.printf("%-15d%-15s%-15d%-15s\n", 
-          i, (char)i + "", counts[i], codes[i]);
-  }*/
+  
   
   /**为字符获取霍夫曼编码
    * 此方法在生成哈夫曼树后调用一次
@@ -131,11 +110,11 @@ public class Huffman {
     return counts;
   }
   
-  /** Define a Huffman coding tree */
+  /** 定义赫夫曼编码树*/
   public static class Tree implements Comparable<Tree> {
     Node root; // The root of the tree
 
-    /** Create a tree with two subtrees */
+    /** 两个子树创建一棵树 */
     public Tree(Tree t1, Tree t2) {
       root = new Node();
       root.left = t1.root;
@@ -143,12 +122,12 @@ public class Huffman {
       root.weight = t1.root.weight + t2.root.weight;
     }
     
-    /** Create a tree containing a leaf node */
+    /**创建包含叶节点的树*/
     public Tree(int weight, char element) {
       root = new Node(weight, element);
     }
     
-    /** Compare trees based on their weights */
+    /** 根据它们的权重比较树*/
     public int compareTo(Tree o) {
       if (root.weight < o.root.weight) // Purposely reverse the order
         return 1;
@@ -161,17 +140,17 @@ public class Huffman {
   
 
     public class Node {
-      char element; // Stores the character for a leaf node
-      int weight; // weight of the subtree rooted at this node
-      Node left; // Reference to the left subtree
-      Node right; // Reference to the right subtree
-      String code = ""; // The code of this node from the root
+      char element; // 用于存储在叶节点A
+      int weight; // 位于此节点的子树的权重
+      Node left; // 引用左子树
+      Node right; // 引用右子树
+      String code = ""; // 这个节点的代码来自root用户
 
-      /** Create an empty node */
+      /** 创建空节点 */
       public Node() {
       }
       
-      /** Create a node with the specified weight and character */
+      /** 创建具有指定权重和字符的节点*/
       public Node(int weight, char element) {
         this.weight = weight;
         this.element = element;

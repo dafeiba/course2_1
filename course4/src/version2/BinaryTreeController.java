@@ -29,7 +29,6 @@ public class BinaryTreeController implements Initializable {
 	Alert alert = new Alert(AlertType.INFORMATION);
 
 	BinaryTree<Integer> bt = new BinaryTree<Integer>();
-	// TreeNode<Integer> root = new TreeNode<Integer>(new Integer(3));
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -37,9 +36,7 @@ public class BinaryTreeController implements Initializable {
 		bt.insert(3);
 		bt.insert(4);
 		bt.insert(5);
-		bt.insert(2); 
-
-	
+		bt.insert(2);
 
 	}
 
@@ -49,7 +46,7 @@ public class BinaryTreeController implements Initializable {
 			p.getChildren().clear();
 
 			bt.insert(Integer.parseInt(Key.getText()));
-			displayTree(bt.getRoot(), (int)p.getWidth() / 2, 30,  (int)p.getWidth() / 4);
+			displayTree(bt.getRoot(), (int) p.getWidth() / 2, 30, (int) p.getWidth() / 4);
 		} catch (NumberFormatException e1) {
 
 			alert.setContentText("输入不合法");
@@ -85,7 +82,8 @@ public class BinaryTreeController implements Initializable {
 				alert.show();
 			}
 
-			displayTree(bt.getRoot(), (int)p.getWidth() / 2, 30,  (int)p.getWidth() / 4);		} catch (NumberFormatException e1) {
+			displayTree(bt.getRoot(), (int) p.getWidth() / 2, 30, (int) p.getWidth() / 4);
+		} catch (NumberFormatException e1) {
 
 			alert.setContentText("输入不合法");
 			alert.show();
@@ -93,42 +91,47 @@ public class BinaryTreeController implements Initializable {
 
 	}
 
+	/*
+	 * 显示位置为根的子树
+	 * 
+	 */
 	private void displayTree(BinaryTree.TreeNode root, int x, int y, int hGap) {
 		// Display the root
 
-		
 		int vGap = 50;
 		int radius = 15;
 
-		Circle c1 = new Circle(x , y , radius);
-		p.getChildren().add(new Text(x , y , root.element + ""));
-		
+		Circle c1 = new Circle(x, y, radius);
+		p.getChildren().add(new Text(x, y, root.element + ""));
+
 		c1.setStroke(Color.BLACK);
 		c1.setFill(Color.WHITE);
-		c1.setOpacity(0.5);//设置透明度
+		c1.setOpacity(0.5);// 设置透明度
 		p.getChildren().add(c1);
 
 		if (root.left != null) {
-			
-			// Draw a line to the left node
-			// Pane pane = new Pane();
+
+			// 向左节点画一条直线
+
 			ConnectLeftChild(p, x - hGap, y + vGap, x, y);
-			// Draw the left subtree recursively
+			// 递归地绘制左子树
 
 			displayTree(root.left, x - hGap, y + vGap, hGap / 2);
 
 		}
 
 		if (root.right != null) {
-			// Draw a line to the right node
-			// Pane pane1 = new Pane();
+			// 向右节点画一条直线
+
 			ConnectRightChild(p, x + hGap, y + vGap, x, y);
-			// Draw the right subtree recursively
+			// 递归地绘制正确的子树
 			displayTree(root.right, x + hGap, y + vGap, hGap / 2);
 		}
 	}
 
-	
+	/*
+	 * 连接坐标为（x2,y2）的父节点和 坐标为（x1,y1）的左子节点
+	 */
 	public void ConnectLeftChild(Pane pane, int x1, int y1, int x2, int y2) {
 		int radius = 15;
 		int vGap = 50;
@@ -140,6 +143,9 @@ public class BinaryTreeController implements Initializable {
 		pane.getChildren().add(new Line(x11, y11, x21, y21));
 	}
 
+	/*
+	 * 连接坐标为（x2,y2）的父节点和 坐标为（x1,y1）的右子节点
+	 */
 	public void ConnectRightChild(Pane pane, int x1, int y1, int x2, int y2) {
 		int radius = 15;
 		int vGap = 50;
