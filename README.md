@@ -1,4 +1,4 @@
-﻿# course2_1
+﻿ # course2_1
 
 [1 哈夫曼编码 数据的压缩与解压](https://github.com/dafeiba/course2_1/tree/master/Project1)
 ---------------------------
